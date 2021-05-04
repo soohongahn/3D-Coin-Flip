@@ -1,0 +1,101 @@
+body{
+  background: black;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  perspective: 400px;
+  color: white;
+}
+
+.title{
+  text-align:center;
+  width: 100%;
+  padding: 100px;
+}
+
+#flipBtn{
+  border: 1px white solid;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 10%;
+}
+
+.coin{
+  --depth: 1vmin;
+  position: relative;
+  width: 15vmin;
+  height: 15vmin;
+  transform-style: preserve-3d;
+  transition: 2s;
+}
+
+@keyframes flipFrontY {
+  to{
+    transform: rotateY(1100deg);
+  }
+}
+
+@keyframes flipBackY {
+  to{
+    transform: rotateY(1640deg);
+  }
+}
+
+@keyframes flipFrontX {
+  to{
+    transform: rotateX(2160deg) rotateY(20deg);
+  }
+}
+
+@keyframes flipBackX {
+  to{
+    transform: rotateX(900deg) rotateY(20deg);
+  }
+}
+
+.flipFront{
+  animation: flipFrontX 1.5s ease-out forwards;
+}
+
+.flipBack{
+  animation: flipBackX 1.5s ease-out forwards;
+}
+
+.flipFrontY{
+  animation: flipFrontY 1.5s ease-out forwards;
+}
+.flipBackY{
+  animation: flipBackY 1.5s ease-out forwards;
+}
+
+.side{
+  --direction: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  transform: translateZ(calc(var(--direction) * var(--depth)));
+  background-image: url("front.png");
+  background-size: cover;
+}
+
+.back{
+  --direction: -1;
+  background-image: url("back.png");
+}
+
+.line{
+  width: 100%;
+  height: calc(var(--depth) *2);
+  background: rgb(144, 144, 144);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotateX(90deg);
+  transform-origin: center;
+}
+
+.vertical{
+  transform: translateY(-50%) rotateX(90deg) rotateY(90deg);
+}
